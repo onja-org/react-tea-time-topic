@@ -1,8 +1,4 @@
 import React from 'react';
-import archiveSVG from '../styles/icons/archive.svg';
-import downvoteSVG from '../styles/icons/downvote.svg';
-import trashSVG from '../styles/icons/trash.svg';
-import upvoteSVG from '../styles/icons/upvote.svg';
 
 export default function TopicList({
 	title,
@@ -19,12 +15,15 @@ export default function TopicList({
 			</header>
 			<section className="next-topic-container">
 				{!topics.length && 'Loading...'}
-				{topics.map(topic => {
+				{topics.map((topic) => {
 					const discussedOnDate = new Date(Number(topic.discussedOn));
 					return (
 						<article key={topic.id}>
 							{!topic.discussedOn ? (
-								<button onClick={() => archiveTopic(topic.id)} className="archive">
+								<button
+									onClick={() => archiveTopic(topic.id)}
+									className="archive"
+								>
 									<svg
 										class="w-6 h-6"
 										fill="none"
@@ -41,7 +40,10 @@ export default function TopicList({
 									</svg>
 								</button>
 							) : (
-								<button onClick={() => deleteTopic(topic.id)} className="delete">
+								<button
+									onClick={() => deleteTopic(topic.id)}
+									className="delete"
+								>
 									<svg
 										class="w-6 h-6"
 										fill="none"

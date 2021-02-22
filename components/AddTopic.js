@@ -7,7 +7,7 @@ export default function AddTopic({ addNewTopic }) {
 				<h4>Add a topic</h4>
 			</header>
 			<article>
-				<form onSubmit={e => addNewTopic(e)} className="add-topic">
+				<form onSubmit={(e) => addNewTopic(e)} className="add-topic">
 					<input
 						required
 						type="text"
