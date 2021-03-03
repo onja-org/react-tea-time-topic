@@ -9,18 +9,19 @@ export default function App() {
 
 	async function fetchTopics() {
 		const res = await fetch(url);
-		const data = await res.json();
-		setTopics(data);
-		console.log(data);
+		try {
+			const data = await res.json();
+			setTopics(data);
+		} catch (e) {
+			// console.log(e);
+		}
 	}
 
 	useEffect(() => {
 		fetchTopics();
 	}, []);
 
-	function addNewTopic(e) {
-		e.preventDefault();
-		const title = e.target.topic.value;
+	function addNewTopic(title) {
 		if (!title) return;
 		const newTopic = {
 			title,
@@ -30,11 +31,10 @@ export default function App() {
 		};
 		const newTopicList = [...topics, newTopic];
 		setTopics(newTopicList);
-		e.target.reset();
 	}
 
 	function archiveTopic(topicId) {
-		const newTopicList = topics.map(topic => {
+		const newTopicList = topics.map((topic) => {
 			if (topic.id === topicId) {
 				return {
 					...topic,
@@ -47,7 +47,7 @@ export default function App() {
 	}
 
 	function upvoteTopic(topicId) {
-		const newTopicList = topics.map(topic => {
+		const newTopicList = topics.map((topic) => {
 			if (topic.id === topicId) {
 				return {
 					...topic,
@@ -60,7 +60,7 @@ export default function App() {
 	}
 
 	function downvoteTopic(topicId) {
-		const newTopicList = topics.map(topic => {
+		const newTopicList = topics.map((topic) => {
 			if (topic.id === topicId) {
 				return {
 					...topic,
@@ -72,7 +72,7 @@ export default function App() {
 		setTopics(newTopicList);
 	}
 	function deleteTopic(topicId) {
-		const newList = topics.filter(topic => topic.id !== topicId);
+		const newList = topics.filter((topic) => topic.id !== topicId);
 		setTopics(newList);
 	}
 
@@ -84,7 +84,7 @@ export default function App() {
 
 	return (
 		<>
-			<h1>Tea time topic 💡</h1>
+			<h1 data-testid="app-title">Tea time topic 💡</h1>
 			<AddTopic addNewTopic={addNewTopic}></AddTopic>
 			<TopicList
 				archiveTopic={archiveTopic}
@@ -92,7 +92,7 @@ export default function App() {
 				upvoteTopic={upvoteTopic}
 				downvoteTopic={downvoteTopic}
 				title="Next Topics"
-				topics={topics.filter(topic => !topic.discussedOn).sort(sortTopic)}
+				topics={topics.filter((topic) => !topic.discussedOn).sort(sortTopic)}
 			></TopicList>
 			<TopicList
 				archiveTopic={archiveTopic}
@@ -100,7 +100,7 @@ export default function App() {
 				upvoteTopic={upvoteTopic}
 				downvoteTopic={downvoteTopic}
 				title="Past Topics"
-				topics={topics.filter(topic => topic.discussedOn).sort(sortTopic)}
+				topics={topics.filter((topic) => topic.discussedOn).sort(sortTopic)}
 			></TopicList>
 		</>
 	);

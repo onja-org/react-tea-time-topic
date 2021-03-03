@@ -9,6 +9,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"jest-fetch-mock": "^3.0.3",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1"
 	},
@@ -16,14 +17,15 @@
 		"last 1 chrome versions"
 	],
 	"devDependencies": {
+		"@babel/core": "^7.13.8",
 		"@babel/plugin-proposal-class-properties": "^7.12.13",
 		"@babel/preset-env": "^7.12.17",
 		"@babel/preset-react": "^7.12.13",
 		"@testing-library/dom": "^7.29.6",
-		"babel-jest": "^26.6.3",
 		"@testing-library/jest-dom": "^5.11.9",
 		"@testing-library/react": "^11.2.5",
 		"@testing-library/user-event": "^12.7.2",
+		"babel-jest": "^26.6.3",
 		"jest": "^26.6.3",
 		"sass": "^1.32.8"
 	}
